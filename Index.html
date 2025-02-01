@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuento Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .page {
+            display: none;
+            text-align: center;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-yellow-50 flex items-center justify-center h-screen">
+    <div class="w-full max-w-2xl bg-white p-4 shadow-lg rounded-lg">
+        <div id="story-container">
+            <div class="page active" id="page-1">
+                <img src="1.jpeg" class="w-full rounded-lg">
+                <p class="mt-4 text-lg">Samantha se despertó con una gran sonrisa, ¡hoy sería un día especial!</p>
+            </div>
+            
+            <div class="page" id="page-2">
+                <img src="2.jpeg" class="w-full rounded-lg">
+                <p class="mt-4 text-lg">En el bosque mágico, Samantha encontró a sus amigos: un oso polar y un león.</p>
+            </div>
+            
+            <div class="page" id="page-3">
+                <img src="3.jpeg" class="w-full rounded-lg">
+                <p class="mt-4 text-lg">Se sentaron a hacer un picnic, pero Samantha vio algo que no le gustaba...</p>
+            </div>
+            
+            <div class="page" id="page-4">
+                <img src="4.jpeg" class="w-full rounded-lg">
+                <p class="mt-4 text-lg">El oso polar y el león la animaron, ¡todo era parte de la aventura!</p>
+            </div>
+            
+            <div class="page" id="page-5">
+                <img src="5.jpeg" class="w-full rounded-lg">
+                <p class="mt-4 text-lg">Al final del día, se abrazaron felices, listos para nuevas aventuras.</p>
+            </div>
+        </div>
+        <div class="mt-4 flex justify-between">
+            <button id="prev" class="px-4 py-2 bg-blue-500 text-white rounded">⬅️ Anterior</button>
+            <button id="next" class="px-4 py-2 bg-blue-500 text-white rounded">Siguiente ➡️</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 5;
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(`page-${page}`).classList.add('active');
+        }
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+    </script>
+</body>
+</html>
